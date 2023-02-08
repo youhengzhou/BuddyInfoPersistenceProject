@@ -43,35 +43,21 @@ public class BuddyInfoTests {
 
     @Test
     public void addBuddy() throws Exception {
-        this.mockMvc.perform(put("/addressBook")).andDo(print()).andExpect(status().isOk())
-                .andExpect(content().string(containsString("\"id\"")));
-        this.mockMvc.perform(post("/buddyInfo?bookId=1").contentType(MediaType.APPLICATION_JSON).content("{\n" +
-                "\t\"firstName\":\"Greg\",\n" +
-                "\t\"lastName\":\"Smith\"\n" +
-                "}")).andDo(print()).andExpect(status().isOk());
+        this.mockMvc.perform(post("/addressBook")).andDo(print()).andExpect(status().isOk()).andExpect(content().string(containsString("\"id\"")));
+        this.mockMvc.perform(post("/buddyInfo?bookId=1").contentType(MediaType.APPLICATION_JSON).content("{" + "\"firstName\":\"Greg\"," + "\"lastName\":\"Smith\"" + "}")).andDo(print()).andExpect(status().isOk());
     }
 
     @Test
     public void removeBuddy() throws Exception {
-        this.mockMvc.perform(put("/addressBook")).andDo(print()).andExpect(status().isOk())
-                .andExpect(content().string(containsString("\"id\"")));
-        this.mockMvc.perform(post("/buddyInfo?bookId=1").contentType(MediaType.APPLICATION_JSON).content("{\n" +
-                "\t\"firstName\":\"Greg\",\n" +
-                "\t\"lastName\":\"Smith\"\n" +
-                "}")).andDo(print()).andExpect(status().isOk());
-        this.mockMvc.perform(delete("/buddyInfo?bookId=1&buddyId=1")).andDo(print()).andExpect(status().isOk())
-        .andExpect(content().string(containsString("\"firstName\":\"Greg\"")));
+        this.mockMvc.perform(post("/addressBook")).andDo(print()).andExpect(status().isOk()).andExpect(content().string(containsString("\"id\"")));
+        this.mockMvc.perform(post("/buddyInfo?bookId=1").contentType(MediaType.APPLICATION_JSON).content("{" + "\"firstName\":\"Greg\"," + "\"lastName\":\"Smith\"" + "}")).andDo(print()).andExpect(status().isOk());
+        this.mockMvc.perform(delete("/buddyInfo?bookId=1&buddyId=1")).andDo(print()).andExpect(status().isOk()).andExpect(content().string(containsString("\"firstName\":\"Greg\"")));
     }
 
     @Test
     public void getBuddyTests() throws Exception {
-        this.mockMvc.perform(put("/addressBook")).andDo(print()).andExpect(status().isOk())
-                .andExpect(content().string(containsString("\"id\"")));
-        this.mockMvc.perform(post("/buddyInfo?bookId=1").contentType(MediaType.APPLICATION_JSON).content("{\n" +
-                "\t\"firstName\":\"Greg\",\n" +
-                "\t\"lastName\":\"Smith\"\n" +
-                "}")).andDo(print()).andExpect(status().isOk());
-        this.mockMvc.perform(get("/buddyInfo?bookId=1&buddyId=1")).andDo(print()).andExpect(status().isOk())
-                .andExpect(content().string(containsString("\"firstName\":\"Greg\"")));
+        this.mockMvc.perform(post("/addressBook")).andDo(print()).andExpect(status().isOk()).andExpect(content().string(containsString("\"id\"")));
+        this.mockMvc.perform(post("/buddyInfo?bookId=1").contentType(MediaType.APPLICATION_JSON).content("{" + "\"firstName\":\"Greg\"," + "\"lastName\":\"Smith\"" + "}")).andDo(print()).andExpect(status().isOk());
+        this.mockMvc.perform(get("/buddyInfo?bookId=1&buddyId=1")).andDo(print()).andExpect(status().isOk()).andExpect(content().string(containsString("\"firstName\":\"Greg\"")));
     }
 }
