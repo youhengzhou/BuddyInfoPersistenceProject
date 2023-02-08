@@ -55,7 +55,7 @@ public class BuddyInfoTests {
     }
 
     @Test
-    public void getBuddyTests() throws Exception {
+    public void getBuddy() throws Exception {
         this.mockMvc.perform(post("/addressBook")).andDo(print()).andExpect(status().isOk()).andExpect(content().string(containsString("\"id\"")));
         this.mockMvc.perform(post("/buddyInfo?bookId=1").contentType(MediaType.APPLICATION_JSON).content("{" + "\"firstName\":\"Greg\"," + "\"lastName\":\"Smith\"" + "}")).andDo(print()).andExpect(status().isOk());
         this.mockMvc.perform(get("/buddyInfo?bookId=1&buddyId=1")).andDo(print()).andExpect(status().isOk()).andExpect(content().string(containsString("\"firstName\":\"Greg\"")));
