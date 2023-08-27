@@ -15,9 +15,9 @@ public class BuddyInfoController {
     }
 
     @RequestMapping(value = "/buddyInfo", method = RequestMethod.GET)
-    public BuddyInfo getBuddy(@RequestParam("bookId") Long id, @RequestParam("buddyId") Integer buddyId){
+    public BuddyInfo getBuddy(@RequestParam("bookId") Long id, @RequestParam("buddyId") String buddyId){
         AddressBook addressBook = addressBookRepository.findAddressBookById(id);
-        return addressBook.getBuddy(buddyId);
+        return addressBook.getBuddy(Integer.parseInt(buddyId));
     }
 
     @RequestMapping(value = "/buddyInfo", method = RequestMethod.POST)
@@ -30,10 +30,10 @@ public class BuddyInfoController {
     }
 
     @RequestMapping(value = "/buddyInfo", method = RequestMethod.DELETE)
-    public BuddyInfo removeBuddy(@RequestParam("bookId") Long id, @RequestParam("buddyId") Integer buddyId){
+    public BuddyInfo removeBuddy(@RequestParam("bookId") Long id, @RequestParam("buddyId") String buddyId){
         AddressBook addressBook = addressBookRepository.findAddressBookById(id);
-        BuddyInfo buddyInfo = addressBook.getBuddy(buddyId);
-        addressBook.removeBuddy(buddyId);
+        BuddyInfo buddyInfo = addressBook.getBuddy(Integer.parseInt(buddyId));
+        addressBook.removeBuddy(Integer.parseInt(buddyId));
         addressBookRepository.save(addressBook);
         buddyInfoRepository.delete(buddyInfo);
         return buddyInfo;

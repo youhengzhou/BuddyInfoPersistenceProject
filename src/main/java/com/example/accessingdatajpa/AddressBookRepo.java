@@ -7,6 +7,6 @@ import java.util.List;
 
 @RepositoryRestResource
 public interface AddressBookRepo extends CrudRepository<AddressBook, Long> {
-    AddressBook findAddressBookById(long id);
+    AddressBook findAddressBookById(Long id);
 
 }
